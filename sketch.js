@@ -269,16 +269,13 @@ function mostrarCalibracion() {
   let tipo = '—';
   if (esSonido) {
     let dur = millis() - tiempoInicioSonido;
-    let esC = volumenPicoSonido >= UMBRAL_CHASQUIDO && dur < DURACION_CHASQUIDO;
-    if (esC)                        tipo = 'CHASQUIDO';
-    else if (dur >= UMBRAL_MANTENIDO) tipo = esGraveAhora ? 'GRAVE MANTENIDO' : '(agudo mantenido)';
+    if (dur >= UMBRAL_MANTENIDO) tipo = esGraveAhora ? 'GRAVE MANTENIDO' : '(agudo mantenido)';
     else                            tipo = esGraveAhora ? 'grave corto' : 'agudo corto';
   }
   fill(255, 220, 80);
   text(`tipo: ${tipo}`, MARCO + 8, MARCO + 68);
 
   fill(180);
-  text(`pico: ${volumenPicoSonido.toFixed(4)}  (umbral chasquido: ${UMBRAL_CHASQUIDO})`, MARCO + 8, MARCO + 84);
   text(`grave:${contadorGrave}  agudo:${contadorAgudo}  opacidad:${nivelOpacidad}`, MARCO + 8, MARCO + 100);
   text(`modelo: ${modeloCargado ? 'listo' : 'cargando...'}`, MARCO + 8, MARCO + 116);
   text(`M = cerrar calibracion`, MARCO + 8, MARCO + 132);
